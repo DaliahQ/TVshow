@@ -13,10 +13,19 @@ class Episode extends Model
 
     public function tvShow()
     {
-    return $this->belongsTo(TVShow::class, 'tv_show_id');
+        return $this->belongsTo(TVShow::class, 'tv_show_id');
     }
     public function likers()
-{
-    return $this->belongsToMany(User::class, 'likes');
-}
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
+    public function isLikedByAuthUser()
+    {
+        if ($this->relationLoaded('likers')) {
+            return $this->likes->where('user_id', auth()->id())->count() > 0;
+        }
+
+        // fallback direct DB query if likes not loaded
+        return $this->likers()->where('user_id', auth()->id())->exists();
+    }
 }

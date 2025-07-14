@@ -13,9 +13,9 @@ class LikeController extends Controller
         return back();
     }
 
-    public function destroy(Episode $episode)
+    public function destroy($episodeId)
     {
-        auth()->user()->likedEpisodes()->syncWithoutDetaching([$episode->id]);
+        auth()->user()->likedEpisodes()->detach($episodeId);
         return back();
     }
 }
