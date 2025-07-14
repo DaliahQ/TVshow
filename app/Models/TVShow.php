@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TVShow extends Model
 {
-   use HasFactory;
-
+    use HasFactory;
+protected $table = 'tv_shows';
     protected $fillable = ['title', 'description', 'airing_time'];
 
     public function episodes()

@@ -16,7 +16,8 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+            {{-- @include('layouts.navigation') --}}
+            @include('layouts.newNavigation')
 
             <!-- Page Heading -->
             @isset($header)
@@ -28,9 +29,12 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            {{-- <main>
                 {{ $slot }}
-            </main>
+            </main> --}}
+            <main class="py-4">
+            @yield('content')
+        </main>
         </div>
     </body>
 </html>
