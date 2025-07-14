@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h1 class="text-center mb-4">Latest Episodes</h1>
+    <h1 class="text-center mb-4 text-white">Latest Episodes</h1>
 
     <div class="row">
         @forelse ($episodes as $episode)

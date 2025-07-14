@@ -13,9 +13,9 @@ class TVShow extends Model
     protected $fillable = ['title', 'description', 'airing_time'];
 
     public function episodes()
-    {
-        return $this->hasMany(Episode::class);
-    }
+{
+    return $this->hasMany(Episode::class, 'tv_show_id');
+}
 
     public function followers()
     {

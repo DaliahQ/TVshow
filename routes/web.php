@@ -6,6 +6,7 @@ use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\TVShowController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\SearchController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -32,5 +33,9 @@ Route::delete('tvshows/{tvshow}/unfollow', [FollowController::class, 'destroy'])
 // like feature
 Route::post('episodes/{episode}/like', [LikeController::class, 'store'])->name('episodes.like')->middleware('auth');
 Route::delete('episodes/{episode}/dislike', [LikeController::class, 'destroy'])->name('episodes.dislike')->middleware('auth');
+//search
+Route::get('/search', [SearchController::class, 'results'])->name('search.results');
+Route::get('/search-suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
+Route::get('/search/results', [SearchController::class, 'results'])->name('search.results');
 
 require __DIR__.'/auth.php';
