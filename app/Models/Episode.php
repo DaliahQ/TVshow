@@ -15,4 +15,8 @@ class Episode extends Model
     {
         return $this->belongsTo(TVShow::class);
     }
+    public function likers()
+{
+    return $this->belongsToMany(User::class, 'likes');
+}
 }

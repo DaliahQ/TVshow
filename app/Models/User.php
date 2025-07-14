@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function follows()
+    {
+        return $this->belongsToMany(TVShow::class, 'follows');
+    }
+    public function likedEpisodes()
+    {
+        return $this->belongsToMany(Episode::class, 'likes');
+    }
 }

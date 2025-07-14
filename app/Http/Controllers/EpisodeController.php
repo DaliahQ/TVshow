@@ -19,4 +19,5 @@ class EpisodeController extends Controller
         $episode = Episode::findOrFail($id);
         return view('episodes.show', compact('episode'));
     }
+    
 }

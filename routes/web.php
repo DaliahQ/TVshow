@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\TVShowController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\LikeController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -24,4 +26,11 @@ Route::get('/episodes/{id}', [EpisodeController::class, 'show'])->name('episodes
 //Tv shows
 Route::get('/tvshows', [TVShowController::class, 'index'])->name('tvshows.index');
 Route::get('/tvshows/{id}', [TVShowController::class, 'show'])->name('tvshows.show');
+// follow feature
+Route::post('tvshows/{tvshow}/follow', [FollowController::class, 'store'])->name('tvshows.follow')->middleware('auth');
+Route::delete('tvshows/{tvshow}/unfollow', [FollowController::class, 'destroy'])->name('tvshows.unfollow')->middleware('auth');
+// like feature
+Route::post('episodes/{episode}/like', [LikeController::class, 'store'])->name('episodes.like')->middleware('auth');
+Route::delete('episodes/{episode}/dislike', [LikeController::class, 'destroy'])->name('episodes.dislike')->middleware('auth');
+
 require __DIR__.'/auth.php';
