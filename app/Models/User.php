@@ -49,14 +49,15 @@ class User extends Authenticatable
     }
     public function follows()
     {
-        return $this->belongsToMany(TVShow::class, 'follows');
+        return $this->belongsToMany(TVShow::class, 'follows','user_id', 'tv_show_id');
     }
     public function likedEpisodes()
     {
-        return $this->belongsToMany(Episode::class, 'likes');
+        return $this->belongsToMany(Episode::class, 'likes')->withTimestamps();
     }
     public function isAdmin()
     {
         return $this->role === 'admin';
     }
+
 }

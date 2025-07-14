@@ -19,6 +19,6 @@ class TVShow extends Model
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follows');
+        return $this->belongsToMany(User::class, 'follows', 'tv_show_id', 'user_id');
     }
 }
