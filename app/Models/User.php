@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'image',
     ];
 
     /**
@@ -52,5 +54,9 @@ class User extends Authenticatable
     public function likedEpisodes()
     {
         return $this->belongsToMany(Episode::class, 'likes');
+    }
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 }
