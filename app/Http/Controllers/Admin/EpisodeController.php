@@ -29,8 +29,6 @@ class EpisodeController extends Controller
     public function store(Request $request)
     {
         $TvId = $request->input('series_id');
-        // $series = TVShow::findOrFail($TvId);
-
         $request->validate([
             'title' => 'required',
             'description' => 'nullable',

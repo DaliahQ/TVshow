@@ -20,9 +20,6 @@ Route::get('/search/results', [SearchController::class, 'results'])->name('searc
 // episodes
 Route::middleware('auth')->group(function () {
 Route::get('/episodes/{id}', [EpisodeController::class, 'show'])->name('episodes.show');
-// like feature
-Route::post('episodes/{episode}/like', [LikeController::class, 'store'])->name('episodes.like');
-Route::delete('episodes/{episode}/dislike', [LikeController::class, 'destroy'])->name('episodes.dislike');
 
 });
 

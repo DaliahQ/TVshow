@@ -30,8 +30,6 @@ class TVShowController extends Controller
         ]);
 
         $request['airing_time'] = $request->from_day . '-' . $request->to_day . ' @ ' . date('g:i A', strtotime($request->time));
-
-
         TVShow::create($request->all());
         return redirect()->route('admin.tvshows.index')->with('success', 'TV Show created successfully.');
     }
@@ -47,7 +45,6 @@ class TVShowController extends Controller
         $from_day = $days[0] ?? '';
         $to_day = $days[1] ?? '';
         $time = isset($parts[1]) ? date('H:i', strtotime($parts[1])) : '';
-
         return view('admin.tvshows.edit', compact('show', 'from_day', 'to_day', 'time'));
     }
 
@@ -60,11 +57,7 @@ class TVShowController extends Controller
             'to_day' => 'required|string',
             'time' => 'required',
         ]);
-
-
         $request['airing_time'] = $request->from_day . '-' . $request->to_day . ' @ ' . date('g:i A', strtotime($request->time));
-
-
         $show = TVShow::findOrFail($id);
         $show->update($request->all());
         return redirect()->route('admin.tvshows.index')->with('success', 'TV Show updated successfully.');
@@ -76,7 +69,6 @@ class TVShowController extends Controller
         $episodes = $show->episodes;
         return view('admin.tvshows.episodes.index', compact('show', 'episodes'));
     }
-
     public function show($id)
     {
         $show = TVShow::findOrFail($id);
