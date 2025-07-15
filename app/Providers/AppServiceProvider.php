@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\TVShow;
+use Illuminate\Routing\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,11 +19,5 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        view()->composer('*', function ($view) {
-            $randomShows = TVShow::inRandomOrder()->limit(5)->get();
-            $view->with('randomShows', $randomShows);
-        });
-    }
+    public function boot(): void {}
 }

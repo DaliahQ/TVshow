@@ -7,11 +7,7 @@ use App\Http\Controllers\TVShowController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\Admin\TVShowController as AdminTVShowController;
-use App\Http\Controllers\Admin\EpisodeController as AdminEpisodeController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Middleware\Admin\AdminMiddleware;
+
 
 
 // Route::get('/', function () {
@@ -44,14 +40,8 @@ Route::get('/search', [SearchController::class, 'results'])->name('search.result
 Route::get('/search-suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
 Route::get('/search/results', [SearchController::class, 'results'])->name('search.results');
 
-//admin
-Route::middleware(['web', 'auth', AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/dashboard', [ AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/tvshows', AdminTVShowController::class);
-    Route::resource('/episodes', AdminEpisodeController::class);
-    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
-});
 
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';
