@@ -50,6 +50,20 @@
                     <i class="bi bi-box-arrow-in-right me-1"></i> Login
                 </a>
             @else
+                <!-- Show user image and name -->
+                <div class="d-flex align-items-center me-3">
+                    <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="Profile"
+                        class="rounded-circle me-2" width="40" height="40">
+                    <span class="text-white">{{ auth()->user()->name }}</span>
+                </div>
+
+                <!-- Admin panel button -->
+                @if (auth()->user()->role == 'admin')
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-warning me-2 d-flex align-items-center">
+                        <i class="bi bi-shield-lock me-1"></i> Admin Panel
+                    </a>
+                @endif
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="btn btn-outline-light d-flex align-items-center">

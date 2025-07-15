@@ -25,22 +25,26 @@ use App\Http\Controllers\SearchController;
 // });
 
 Route::get('/', [EpisodeController::class, 'latest'])->name('home');
-Route::get('/episodes/{id}', [EpisodeController::class, 'show'])->name('episodes.show');
 //Tv shows
 Route::get('/tvshows', [TVShowController::class, 'index'])->name('tvshows.index');
 Route::get('/tvshows/{id}', [TVShowController::class, 'show'])->name('tvshows.show');
 // follow feature
 Route::post('tvshows/{tvshow}/follow', [FollowController::class, 'store'])->name('tvshows.follow')->middleware('auth');
 Route::delete('tvshows/{tvshow}/unfollow', [FollowController::class, 'destroy'])->name('tvshows.unfollow')->middleware('auth');
-// like feature
-Route::post('episodes/{episode}/like', [LikeController::class, 'store'])->name('episodes.like')->middleware('auth');
-Route::delete('episodes/{episode}/dislike', [LikeController::class, 'destroy'])->name('episodes.dislike')->middleware('auth');
+
 //search
 Route::get('/search', [SearchController::class, 'results'])->name('search.results');
 Route::get('/search-suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
 Route::get('/search/results', [SearchController::class, 'results'])->name('search.results');
 
+// episodes
+Route::middleware('auth')->group(function () {
+Route::get('/episodes/{id}', [EpisodeController::class, 'show'])->name('episodes.show');
+// like feature
+Route::post('episodes/{episode}/like', [LikeController::class, 'store'])->name('episodes.like');
+Route::delete('episodes/{episode}/dislike', [LikeController::class, 'destroy'])->name('episodes.dislike');
 
+});
 
 
 require __DIR__ . '/auth.php';

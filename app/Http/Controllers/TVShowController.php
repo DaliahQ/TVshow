@@ -7,7 +7,7 @@ use App\Models\TVShow;
 
 class TVShowController extends Controller
 {
-      public function index()
+    public function index()
     {
         $tvshows = TVShow::latest()->get();
         return view('tvshows.index', compact('tvshows'));
