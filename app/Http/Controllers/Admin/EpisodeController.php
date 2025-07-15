@@ -66,7 +66,8 @@ class EpisodeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $episode = Episode::findOrFail($id);
+        return view('admin.tvshows.episodes.show', compact('episode'));
     }
 
     /**

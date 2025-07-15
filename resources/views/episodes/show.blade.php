@@ -3,7 +3,8 @@
 @section('content')
     <div class="container text-white">
         <h1 class="text-2xl font-bold mb-4">{{ $episode->title }}</h1>
-        <img src="{{ asset('storage/' . $episode->thumbnail) }}" alt="{{ $episode->title }}" class="mb-4 w-full h-64 object-cover">
+        <img src="{{ asset('storage/' . $episode->thumbnail) }}" alt="{{ $episode->title }}"
+            class="mb-4 w-full h-24 object-cover">
         <p>{{ $episode->description }}</p>
         <p class="text-sm text-gray-500">Duration: {{ $episode->duration }}</p>
         <p class="text-sm text-gray-500">Airing Time: {{ $episode->airing_time }}</p>
@@ -19,10 +20,15 @@
                 <button class="btn btn-primary text-white px-4 py-2 rounded">Like</button>
             </form>
         @endif
-        <video controls class="w-full mt-4">
-            <source src="{{ $episode->video_url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        @if ($episode->video)
+            <video controls class="w-full mt-4">
+                <source src="{{ asset('storage/' . $episode->video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        @else
+            <p>No video uploaded.</p>
+        @endif
+
 
 
     </div>

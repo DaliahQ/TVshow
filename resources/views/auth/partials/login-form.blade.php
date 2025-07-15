@@ -1,19 +1,15 @@
-<form  method="POST" action="{{ route('login') }}">
+<!-- Login Form -->
+<form id="login-form">
     @csrf
     <div class="mb-3">
-        <label for="email">Email address</label>
-        <input id="email" type="email" class="form-control" name="email" required autofocus>
-        @error('email')
-            <span class="invalid-feedback">{{ $message }}</span>
-        @enderror
+        <label for="login-email">Email address</label>
+        <input id="login-email" type="email" class="form-control" name="email" required autofocus>
+        <div class="invalid-feedback" id="login-email-error"></div>
     </div>
     <div class="mb-3">
-        <label for="password">Password</label>
-        <input id="password" type="password" class="form-control" name="password" required>
-        @error('password')
-            <span class="invalid-feedback">{{ $message }}</span>
-        @enderror
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" class="form-control" name="password" required>
+        <div class="invalid-feedback" id="login-password-error"></div>
     </div>
-
     <button type="submit" class="btn btn-primary w-100">Login</button>
 </form>

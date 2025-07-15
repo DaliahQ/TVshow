@@ -32,7 +32,8 @@
                             @foreach ($chunk as $episode)
                                 <div class="col-md-3">
                                     <div class="card h-100 bg-dark text-white">
-                                        <img src="{{ $episode->thumbnail ? asset('storage/' . $episode->thumbnail) : 'https://via.placeholder.com/150' }}"
+                                        <img <img
+                                            src="{{ $episode->thumbnail ? asset('storage/' . $episode->thumbnail) : 'https://via.placeholder.com/150' }}"
                                         class="card-img-top" alt="{{ $episode->title }}"
                                         style="height: 150px; object-fit: cover;">
                                         <div class="card-body d-flex flex-column">

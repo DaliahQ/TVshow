@@ -113,6 +113,95 @@
                 }
             });
         });
+
+        $(document).ready(function() {
+
+            // LOGIN FORM
+            $('#login-form').submit(function(e) {
+                e.preventDefault();
+
+                // Clear previous errors
+                $('.invalid-feedback').text('');
+                $('.form-control').removeClass('is-invalid');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('login') }}',
+                    data: {
+                        email: $('#login-email').val(),
+                        password: $('#login-password').val(),
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        //  Success: reload to reflect auth status
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            if (errors.email) {
+                                $('#login-email-error').text(errors.email[0]);
+                                $('#login-email').addClass('is-invalid');
+                            }
+                            if (errors.password) {
+                                $('#login-password-error').text(errors.password[0]);
+                                $('#login-password').addClass('is-invalid');
+                            }
+                        } else {
+                            alert('Something went wrong. Please try again.');
+                        }
+                    }
+                });
+            });
+
+            // REGISTER FORM
+            $('#register-form').submit(function(e) {
+                e.preventDefault();
+
+                // Clear previous errors
+                $('.invalid-feedback').text('');
+                $('.form-control').removeClass('is-invalid');
+
+                let formData = new FormData(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('register') }}',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // ✅ Success: reload to reflect auth status
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            if (errors.name) {
+                                $('#register-name-error').text(errors.name[0]);
+                                $('#register-name').addClass('is-invalid');
+                            }
+                            if (errors.email) {
+                                $('#register-email-error').text(errors.email[0]);
+                                $('#register-email').addClass('is-invalid');
+                            }
+                            if (errors.password) {
+                                $('#register-password-error').text(errors.password[0]);
+                                $('#register-password').addClass('is-invalid');
+                            }
+                            if (errors.profile_image) {
+                                $('#register-profile_image-error').text(errors.profile_image[
+                                0]);
+                                $('#register-profile_image').addClass('is-invalid');
+                            }
+                        } else {
+                            alert('Something went wrong. Please try again.');
+                        }
+                    }
+                });
+            });
+
+        });
     </script>
 
 </body>
