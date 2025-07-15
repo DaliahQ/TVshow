@@ -55,10 +55,11 @@
                                 @foreach ($chunk as $episode)
                                     <div class="col-md-3">
                                         <div class="card h-100 bg-dark text-white">
-                                            <img src="{{ $episode->thumbnail ?? 'https://via.placeholder.com/150' }}"
-                                                class="card-img-top" alt="{{ $episode->title }}"
-                                                style="height: 150px; object-fit: cover;">
-                                            <div class="card-body d-flex flex-column">
+                                            <img src="{{ $episode->thumbnail ? asset('storage/' . $episode->thumbnail) : 'https://via.placeholder.com/150' }}"
+
+                                            class="card-img-top" alt="{{ $episode->title }}"
+                                            style="height: 150px; object-fit: cover;">
+                                            <div class="card-body d-flex flex-column text-white">
                                                 <h5 class="card-title">{{ $episode->title }}</h5>
                                                 <p class="card-text">
                                                     {{ \Illuminate\Support\Str::limit($episode->description, 80) }}
@@ -85,10 +86,12 @@
                 </div>
 
                 {{-- Carousel controls --}}
-                <button class="carousel-control-prev" type="button" data-bs-target="#episodesCarousel" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#episodesCarousel"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#episodesCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#episodesCarousel"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
             </div>

@@ -27,14 +27,14 @@
                             <!-- Edit Button -->
                             <a href="{{ route('admin.episodes.edit', $episode->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                            <!-- Delete Button -->
+                            {{-- <!-- Delete Button -->
                             <form action="{{ route('admin.episodes.destroy', $episode->id) }}" method="POST"
                                 class="d-inline"
                                 onsubmit="return confirm('Are you sure you want to delete this episode?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                 @endforeach

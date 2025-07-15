@@ -32,12 +32,12 @@
                             @foreach ($chunk as $episode)
                                 <div class="col-md-3">
                                     <div class="card h-100 bg-dark text-white">
-                                        <img src="{{ $episode->thumbnail ?? 'https://via.placeholder.com/150' }}"
-                                            class="card-img-top" alt="{{ $episode->title }}"
-                                            style="height: 150px; object-fit: cover;">
+                                        <img src="{{ $episode->thumbnail ? asset('storage/' . $episode->thumbnail) : 'https://via.placeholder.com/150' }}"
+                                        class="card-img-top" alt="{{ $episode->title }}"
+                                        style="height: 150px; object-fit: cover;">
                                         <div class="card-body d-flex flex-column">
                                             <h5 class="card-title">{{ $episode->title }}</h5>
-                                            <p class="card-text">
+                                            <p class="card-text text-white">
                                                 {{ \Illuminate\Support\Str::limit($episode->description, 80) }}</p>
                                             <small class="text-muted">Duration: {{ $episode->duration }}</small><br>
                                             <small class="text-muted">Airing: {{ $episode->airing_time }}</small>

@@ -8,7 +8,7 @@
             @forelse ($episodes as $episode)
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 bg-dark text-white border-0">
-                        <img src="{{ $episode->thumbnail }}" class="card-img-top" alt="{{ $episode->title }}"
+                        <img src="{{ asset('storage/' . $episode->thumbnail) }}" class="card-img-top" alt="{{ $episode->title }}"
                             style="height: 180px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ $episode->title }}</h5>

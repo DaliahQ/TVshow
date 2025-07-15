@@ -1,3 +1,4 @@
+
 @extends('layouts.admin')
 
 @section('content')
@@ -19,6 +20,7 @@
                 <td>{{ $show->title }}</td>
                 <td>{{ $show->airing_time }}</td>
                 <td>
+                    <a href="{{ route('admin.tvshows.show', $show->id) }}" class="btn btn-secondary btn-sm">View</a>
                     <a href="{{ route('admin.tvshows.edit', $show->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <a href="{{ route('admin.tvshows.episodes', $show->id) }}" class="btn btn-info btn-sm">Manage Episodes</a>
                 </td>
@@ -28,5 +30,6 @@
     </table>
 </div>
 @endsection
+
 
 

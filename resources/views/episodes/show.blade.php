@@ -3,7 +3,7 @@
 @section('content')
     <div class="container text-white">
         <h1 class="text-2xl font-bold mb-4">{{ $episode->title }}</h1>
-        <img src="{{ $episode->thumbnail }}" alt="{{ $episode->title }}" class="mb-4 w-full h-64 object-cover">
+        <img src="{{ asset('storage/' . $episode->thumbnail) }}" alt="{{ $episode->title }}" class="mb-4 w-full h-64 object-cover">
         <p>{{ $episode->description }}</p>
         <p class="text-sm text-gray-500">Duration: {{ $episode->duration }}</p>
         <p class="text-sm text-gray-500">Airing Time: {{ $episode->airing_time }}</p>
